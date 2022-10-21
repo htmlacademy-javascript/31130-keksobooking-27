@@ -11,13 +11,12 @@ const getRandomNumber = (min, max) => {
   }
 
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
+};
 
 const gerRandomFloatNumber = (min, max, howManyDecimals) => {
 
   if (max < 0 || min < 0 || howManyDecimals <= 0) {
-    return NaN
+    return NaN;
   }
 
   if (max < min) {
@@ -27,7 +26,7 @@ const gerRandomFloatNumber = (min, max, howManyDecimals) => {
   }
 
   return (Math.random() * (max - min + 1) + min).toFixed(howManyDecimals);
-}
+};
 
-console.log(getRandomNumber(0, 25));
-console.log(gerRandomFloatNumber(5.78, 10.134, 4));
+getRandomNumber(0, 25);
+gerRandomFloatNumber(5.78, 10.134, 4);
