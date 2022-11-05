@@ -1,4 +1,3 @@
-/* eslint-disable no-trailing-spaces */
 const ADS_AMOUNT = 10;
 
 const AvatarPath = {
@@ -6,7 +5,7 @@ const AvatarPath = {
   RIGHT_PATH: '.png',
 };
 
-const AD_TITLES = [
+const ADS_TITLES = [
   'Уютный особняк',
   'Отличная квартира для большой семьи',
   'Студия рядом с метро',
@@ -126,7 +125,7 @@ const getRandomLengthArray = (array, unique = false) => {
       const copyArrayIndex = copyArray.indexOf(element);
       newArray.push(element);
 
-      if (unique === true) {
+      if (unique) {
         copyArray.splice(copyArrayIndex, 1);
       }
       break;
@@ -137,13 +136,10 @@ const getRandomLengthArray = (array, unique = false) => {
 
 const authorsAvatars = getAuthorsPhotosArray(AvatarPath.LEFT_PATH, AvatarPath.RIGHT_PATH);
 
-// eslint-disable-next-line no-return-assign, no-undef
-const createAuthor = () => getRandomArrayElement(authorsAvatars, changingOrigin = true);
-// не очень понимаю, чем линтеру не угодил параметр, который надо указывать через = и почему он undefined для него
+const createAuthor = () => getRandomArrayElement(authorsAvatars, true);
 
-// eslint-disable-next-line no-return-assign
 const createOffer = () => ({
-  title: getRandomArrayElement(AD_TITLES),
+  title: getRandomArrayElement(ADS_TITLES),
   address: this.location,
   price: getRandomNumber(Price.MIN_PRICE, Price.MAX_PRICE),
   type: getRandomArrayElement(BUILDING_TYPES),
@@ -151,8 +147,7 @@ const createOffer = () => ({
   guests: getRandomNumber(1, MAX_GUESTS),
   checkin: getRandomArrayElement(CHECKIN_HOURS),
   checkout: getRandomArrayElement(CHECKOUT_HOURS),
-  // eslint-disable-next-line no-undef
-  features: getRandomLengthArray(FEATURES, unique = true),
+  features: getRandomLengthArray(FEATURES, true),
   description: 'Уютное жилище в оживлённой части города',
   photos: getRandomLengthArray(PHOTOS)
 });
@@ -168,5 +163,6 @@ const createAd = () => ({
   location: createCoordinates(),
 });
 
-// eslint-disable-next-line no-unused-vars
 const someAds = Array.from({length: ADS_AMOUNT}, createAd);
+
+someAds();
