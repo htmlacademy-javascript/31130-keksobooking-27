@@ -82,11 +82,19 @@ const getAuthorsPhotosArray = (leftPath, rightPath) => {
 
 const authorsAvatars = getAuthorsPhotosArray(AvatarPath.LEFT_PATH, AvatarPath.RIGHT_PATH);
 
-const createAuthor = () => getRandomArrayElement(authorsAvatars, true);
+const createAuthor = () => ({
+  avatar: getRandomArrayElement(authorsAvatars, true)
+});
+
+const createCoordinates = () => ({
+  lat: getRandomFloatNumber(Location.LAT_MIN, Location.LAT_MAX, 5),
+  lon: getRandomFloatNumber(Location.LNG_MIN, Location.LNG_MAX, 5)
+});
 
 const createOffer = () => ({
   title: getRandomArrayElement(ADS_TITLES),
   price: getRandomNumber(Price.MIN_PRICE, Price.MAX_PRICE),
+  address: createCoordinates(),
   type: getRandomArrayElement(BUILDING_TYPES),
   rooms: getRandomNumber(1, MAX_ROOMS),
   guests: getRandomNumber(1, MAX_GUESTS),
@@ -95,11 +103,6 @@ const createOffer = () => ({
   features: getRandomLengthArray(FEATURES, true),
   description: 'Уютное жилище в оживлённой части города',
   photos: getRandomLengthArray(PHOTOS)
-});
-
-const createCoordinates = () => ({
-  lat: getRandomFloatNumber(Location.LAT_MIN, Location.LAT_MAX, 5),
-  lon: getRandomFloatNumber(Location.LNG_MIN, Location.LNG_MAX, 5)
 });
 
 const createAd = () => ({
