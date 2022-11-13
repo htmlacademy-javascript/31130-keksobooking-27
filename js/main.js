@@ -1,3 +1,5 @@
 import { createAds } from './data.js';
+import { createCardElement } from './card.js';
 
-createAds();
+const ads = createAds();
+createCardElement(ads[0]);
