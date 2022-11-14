@@ -45,21 +45,13 @@ const createPhotos = (template, cardPhotosData) => {
   }
 };
 
-const deleteElementIfEmpty = (template, data) => {
-  if (!data || data.length === 0) {
-    template.remove();
-  }
-};
-
-const fillElementContent = (template, data) => {
-  deleteElementIfEmpty(template, data);
-
-  if (typeof data === 'string' && data.includes('img')) {
-    template.src = data;
+const fillElementContent = (element, data, attribute = 'textContent') => {
+  if (data && data.length) {
+    element[attribute] = data;
     return;
   }
 
-  template.textContent = data;
+  element.remove();
 };
 
 const createCardElement = (cardData) => {
@@ -87,7 +79,9 @@ const createCardElement = (cardData) => {
     cardTemplate.querySelector('.popup__description'),
     cardData.offer.description);
   fillElementContent(
-    cardTemplate.querySelector('.popup__avatar'), cardData.author.avatar);
+    cardTemplate.querySelector('.popup__avatar'),
+    cardData.author.avatar,
+    'src');
 
   createPhotos(cardTemplate, cardData.offer.photos);
   createFeatures(cardTemplate, cardData.offer.features);
